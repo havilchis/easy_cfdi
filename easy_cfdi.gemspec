@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Hugo Armando Vilchis"]
 
   spec.summary       = %q{Facturación Electrónica México. Genera y sella un CFDI, devuelve un XML listo para enviar a un PAC }
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
+  spec.description   = %q{ Write a longer description or delete this line.}
   spec.homepage      = "https://github.com/havilchis/easy_cfdi"
   spec.license       = "MIT"
 
@@ -28,8 +28,8 @@ Gem::Specification.new do |spec|
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
-
   spec.add_development_dependency "bundler", "~> 1.16"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_runtime_dependency 'nokogiri'
 end
