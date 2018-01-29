@@ -33,7 +33,7 @@ module EasyCfdi
 
    def genera_sello
      # Se carga la plantilla oficial del SAT que servirá para general la cadena_original
-     template = Nokogiri::XSLT(File.read('/home/havilchis/Dropbox/desarrollos/gems/easy_cfdi/lib/easy_cfdi/plantillas_sat/cadenaoriginal_3_3.xslt.erb'))
+     template = Nokogiri::XSLT(File.read('/home/havilchis/Dropbox/desarrollos/gems/easy_cfdi/lib/easy_cfdi/plantillas_sat/cadenaoriginal_3_3.xslt.rb'))
 
      # Se genera la cadena original usando el template de arriba como plantilla
      # se hace un Split porque la Cadena se encuentra en la última línea del string devuelto
