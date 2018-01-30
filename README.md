@@ -9,7 +9,7 @@ El propósito de ésta libreria es el siguiente:
  * Devolver un XML listo para enviar a cualquier PAC para su timbrado.   
 
 ## Atención: Proyecto en fase Alpha
-Ésta Gema se encuentra en proceso de construcción, tanto el código como la documentación están incompletos.
+Ésta Gema se encuentra en proceso de construcción, tanto el código como la documentación están incompletos y desastrosos. Por favor vuelva despues.
 
 ## Installation
 
