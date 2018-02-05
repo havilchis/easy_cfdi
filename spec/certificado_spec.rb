@@ -9,6 +9,8 @@ RSpec.describe EasyCfdi::ObtenerCertificado do
   end
   it 'Método certificado debe retornar el string como lo pide el SAT' do
     expect(cert.certificado).to include('MIIFxTCCA62gAwIBAgIUMjAwMDEwMDAwMDAzMDAwMjI4MTUw')
+    expect(cert.certificado).to_not include('-----BEGIN CERTIFICATE-----')
+    expect(cert.certificado).to_not include('-----END CERTIFICATE-----')
   end
   it 'Método expires_at debe retornar la fecha de expiración en UTC' do
     expect(cert.expires_at.to_s).to include('2020-10-25 21:52:11 UTC')
