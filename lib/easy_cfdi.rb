@@ -1,7 +1,9 @@
 require 'nokogiri'
+require 'openssl'
 require "easy_cfdi/version"
 require "easy_cfdi/build_xml"
 require "easy_cfdi/certificado_y_sello/obtener_certificado"
+require "easy_cfdi/certificado_y_sello/obtener_llave"
 require "easy_cfdi/certificado_y_sello/genera_cadena_y_sello"
 
 module EasyCfdi
@@ -10,16 +12,16 @@ module EasyCfdi
    attr_reader :certificate
 
    def initialize(options={})
-     @certificate = ObtenerCertificado.new(File.read(options[:certificado]))
-     @llave_pem = File.read(options[:llave_pem])
+     @certificate = options[:certificado]
+     @llave_pem = options[:llave_pem]
    end
 
    def encabezado
      #Se agrega al encabezado previamente subido por el usuario los attributos
      #NoCertificado y Certificado. A menos que el usuario haya ingresado estos valores
      #manualmente.
-     @encabezado[:NoCertificado] = self.certificate.numero_certificado unless @encabezado.key? :NoCertificado
-     @encabezado[:Certificado] = self.certificate.content unless @encabezado.key? :Certificado
+     @encabezado[:NoCertificado] = @certificate.numero_certificado unless @encabezado.key? :NoCertificado
+     @encabezado[:Certificado] = @certificate.certificado unless @encabezado.key? :Certificado
      @encabezado
    end
 

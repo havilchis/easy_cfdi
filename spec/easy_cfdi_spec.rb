@@ -4,13 +4,13 @@ RSpec.describe EasyCfdi do
   end
 
   it "does something useful" do
-    comprobante = EasyCfdi::Comprobante.new(
-      certificado: './spec/certificados/lan7008173r5.cer',
-      llave_pem: './spec/certificados/key.pem',
-      autocalcular_totales_encabezado: true,
-      autoescribir_nodo_impuestos: true
-    )
+    cert = EasyCfdi::ObtenerCertificado.new(File.read('spec/certificados/lan7008173r5.cer'))
+    pem = OpenSSL::PKey::RSA.new File.read("spec/certificados/key.pem")
 
+    comprobante = EasyCfdi::Comprobante.new(
+      certificado: cert,
+      llave_pem: pem
+    )
     comprobante.encabezado = {
       Version: '3.3',
       Serie: 'F',
@@ -21,6 +21,7 @@ RSpec.describe EasyCfdi do
       LugarExpedicion: '09070'
     }
 
+=begin
     comprobante.emisor = {
       Rfc: 'LAN7008173R5',
       Nombre: 'Super Distribudora del Oriente SA de CV',
@@ -33,7 +34,8 @@ RSpec.describe EasyCfdi do
       UsoCFDI: 'G03'
     }
 
-    puts comprobante.construye_xml
-    puts comprobante.genera_sello
+    #puts comprobante.construye_xml
+    #puts comprobante.genera_sello
+=end
     end
 end
