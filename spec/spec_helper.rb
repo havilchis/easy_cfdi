@@ -1,4 +1,5 @@
 require "bundler/setup"
+require "helpers"
 require "easy_cfdi"
 
 RSpec.configure do |config|
@@ -11,4 +12,6 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+
+  config.include Helpers
 end
