@@ -5,8 +5,8 @@ This is a Gem for build a valid XML file for the Mexican requirements of Digital
 
 El propósito de ésta libreria es el siguiente:
  * Generar la estructura XML a partir de los parámetros recibidos.
- * Generar la Cadena Original e integrar el Sello y el Certificado al XML.
- * Validar la estructura y la sintaxis del XML utilizando como base el arhivo XSD proporcionado por el SAT para tal propósito.
+ * Generar la Cadena Original y Sello. Agregarlos junto con el Certificado al cuerpo del XML.
+ * Validar la estructura y la sintaxis del documento utilizando como base el arhivo XSD proporcionado por el SAT para tal propósito.
  * Devolver un XML listo para enviar a cualquier PAC para su timbrado.   
 
 Esta gema NO hace cálculos de impuestos o de subtotales. Sólo se encarga de mapear los datos que usted ingresa con la estructura válida del CFDI. Puede ingresar Strings, Numbers, Modelos de ActiveRecord o cualquier porción de código ruby. 
@@ -41,11 +41,11 @@ Abrir una terminal, ubicarse en la carpeta donde están los CSD y ejecutar:
 
 	$ openssl pkcs8 -inform DET -in aaa010101aaa.key -passin pass:12345678a -out key.pem
 Donde:
- - *aaa010101aaa.key* es nombre de tu llave.
- - *12345678a* es la contraseña de tu certificado.
+ - *aaa010101aaa.key* es el nombre de la llave.
+ - *12345678a* es la contraseña del certificado.
  - *key.pem* es el nombre del archivo final ya convertido a PEM, y es el que se utilizará para generar la el sello del CFDI.
 
-Usted podría crear un script (o un Backgroud Job)para realizar éste procedimiento en automático cada vez que un usuario suba sus certificados.
+Usted podría crear un script (o un Backgroud Job) para realizar éste procedimiento en automático cada vez que un usuario suba sus certificados.
 
 
 
@@ -70,17 +70,18 @@ Or install it yourself as:
 Ejemplo básico, más adelánte se creará una carpeta "examples" para documentar más escenarios.
 
 ```ruby
-# Cargar los certificados del SAT.
+# Leer el contenido de los certificados del SAT.
 cert_file = File.read('path/to/certificate/RCF7008274R5.cer')
-cert = EasyCfdi::ObtenerCertificado.new(cert_file)
-
 pem_file = File.read("path/to/certificate/key.pem")
+
+# Instanciar los certificados en objetos.
+cert = EasyCfdi::ObtenerCertificado.new(cert_file)
 pem = EasyCfdi::ObtenerLlave.new(pem_file)
     
-# Instanciar el comprobante, con la llave y el certificado como parámetros:
+# Instanciar el comprobante, pasando el certificado y la llave como parámetros:
 @comprobante = EasyCfdi::Comprobante.new(certificado: cert, llave_pem: pem)
 
-# Construir los nodos y los atributos necesarios 
+# Agregar al comprobante los nodos y los atributos necesarios 
 # (Los nombres de los nodos son convertidos automaticamente a CammelCase al momento de generar el XML):
 @comprobante.encabezado = EasyCfdi::Encabezado.new do |encabezado|
   encabezado.version = '3.3'
@@ -98,7 +99,7 @@ end
   emisor.regimen_fiscal = '601'
 end
     
-@comprobante.emisor = EasyCfdi::Receptor.new do |receptor|
+@comprobante.receptor = EasyCfdi::Receptor.new do |receptor|
   receptor.rfc = 'XAXX010101000'
   receptor.nombre = 'Rodolfo Carranza Ramos'
   receptor.uso_cfdi = 'G03'
