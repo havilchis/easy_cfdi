@@ -11,17 +11,21 @@ RSpec.describe EasyCfdi do
       certificado: cert,
       llave_pem: pem
     )
-    comprobante.encabezado = {
-      Version: '3.3',
-      Serie: 'F',
-      Folio: 12345678,
-      FormaPago: '01',
-      TipoDeComprobante: 'I',
-      MetodoPago: 'PUE',
-      LugarExpedicion: '09070'
-    }
 
-=begin
+    comprobante.encabezado = EasyCfdi::Encabezado.new do |encabezado|
+      encabezado.version = '3.3'
+      encabezado.serie = 'F'
+      encabezado.folio = 123456
+      encabezado.forma_pago = '01'
+      encabezado.tipo_de_comprobante = 'I'
+      encabezado.metodo_pago = 'PUE'
+      encabezado.lugar_expedicion = '09070'
+    end
+
+    comprobante.cfdi_relacionados = {
+      tipoRelacion:'01',
+      uuid: '0001'
+    }
     comprobante.emisor = {
       Rfc: 'LAN7008173R5',
       Nombre: 'Super Distribudora del Oriente SA de CV',
@@ -34,8 +38,7 @@ RSpec.describe EasyCfdi do
       UsoCFDI: 'G03'
     }
 
-    #puts comprobante.construye_xml
+    puts comprobante.construye_xml
     #puts comprobante.genera_sello
-=end
     end
 end

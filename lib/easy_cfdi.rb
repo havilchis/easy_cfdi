@@ -1,14 +1,16 @@
 require 'nokogiri'
 require 'openssl'
+require 'ostruct'
 require "easy_cfdi/version"
 require "easy_cfdi/build_xml"
 require "easy_cfdi/certificado_y_sello/obtener_certificado"
 require "easy_cfdi/certificado_y_sello/obtener_llave"
 require "easy_cfdi/certificado_y_sello/genera_cadena_y_sello"
+require "easy_cfdi/constructores_nodos/encabezado"
 
 module EasyCfdi
  class Comprobante
-   attr_accessor :encabezado, :emisor, :receptor
+   attr_accessor :encabezado, :emisor, :receptor, :cfdi_relacionados
    attr_reader :certificate
 
    def initialize(options={})
@@ -20,9 +22,10 @@ module EasyCfdi
      #Se agrega al encabezado previamente subido por el usuario los attributos
      #NoCertificado y Certificado. A menos que el usuario haya ingresado estos valores
      #manualmente.
-     @encabezado[:NoCertificado] = @certificate.numero_certificado unless @encabezado.key? :NoCertificado
-     @encabezado[:Certificado] = @certificate.certificado unless @encabezado.key? :Certificado
-     @encabezado
+     hash = @encabezado.to_hash
+     hash[:NoCertificado] = @certificate.numero_certificado unless hash.key? :NoCertificado
+     hash[:Certificado] = @certificate.certificado unless hash.key? :Certificado
+     hash
    end
 
    def construye_xml

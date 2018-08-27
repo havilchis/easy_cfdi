@@ -58,11 +58,11 @@ Ejemplo básico, para más escenarios, revise la Wiki.
 
  1. Instanciar el certificado y la llave en formato PEM.
 	 ```ruby
-	 cert_file = File.read('path/to/certificate/RCF7008274R5.cer'
+	 cert_file = File.read('path/to/certificate/RCF7008274R5.cer')
 	 cert = EasyCfdi::ObtenerCertificado.new(cert_file)
 
 	 pem_file = File.read("path/to/certificate/key.pem")
-	 pem = EasyCfdi::ObtenerLlave.new(pem_file) 
+	 pem = EasyCfdi::ObtenerLlave.new(pem_file)
 	 ```
 2. Instanciar el comprobante, con la llave y el certificado como parámetros:
 	```ruby
