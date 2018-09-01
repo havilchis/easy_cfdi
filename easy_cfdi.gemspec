@@ -32,5 +32,10 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_runtime_dependency 'nokogiri'
-  spec.add_runtime_dependency 'openssl'
+  if RUBY_PLATFORM =~ /java/
+    spec.platform = 'java'
+    spec.add_dependency 'activerecord-jdbcpostgresql-adapter'
+    else
+    spec.add_runtime_dependency 'openssl'
+  end
 end
