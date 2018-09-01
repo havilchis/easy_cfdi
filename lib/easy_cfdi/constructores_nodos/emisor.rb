@@ -1,4 +1,4 @@
 module EasyCfdi
-  class Emisor < Nodos
+  class Emisor < NodoBase
   end
 end

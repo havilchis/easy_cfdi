@@ -1,4 +1,4 @@
 module EasyCfdi
-  class Encabezado < Nodos
+  class Encabezado < NodoBase
   end
 end

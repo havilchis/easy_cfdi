@@ -1,4 +1,4 @@
 module EasyCfdi
-  class Receptor < Nodos
+  class Receptor < NodoBase
   end
 end

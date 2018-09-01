@@ -1,5 +1,5 @@
 module EasyCfdi
-  class Nodos
+  class NodoBase
     def initialize
       @opts = OpenStruct.new
       yield @opts
