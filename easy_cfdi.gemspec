@@ -33,9 +33,10 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_runtime_dependency 'nokogiri'
   if RUBY_PLATFORM =~ /java/
-    spec.platform = 'java'
-    spec.add_dependency 'activerecord-jdbcpostgresql-adapter'
-    else
+    # spec.platform = 'java'
+    spec.add_runtime_dependency 'jruby-openssl'
+    spec.add_runtime_dependency 'krypt'
+  else
     spec.add_runtime_dependency 'openssl'
   end
 end

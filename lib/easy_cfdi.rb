@@ -1,5 +1,5 @@
-require 'jruby/openssl/gem_only' if RUBY_PLATFORM =~ /java/
-require 'openssl' if RUBY_PLATFORM !~ /java/
+require 'openssl' 
+require 'krypt/ossl' if RUBY_PLATFORM =~ /java/
 require 'nokogiri'
 require 'ostruct'
 require 'easy_cfdi/version'
