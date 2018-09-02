@@ -28,7 +28,7 @@ Este README se actualiza conforme se vallan creando funcionalidades.
 
 ## Requisitos
 
- - Ruby 2.0 en adelante. Se han hecho las modificaciones necesarias para también ofrecer soporte para jRuby (en promedio 30% más rápido). Puede consultar en [Travis CI](https://travis-ci.org/havilchis/easy_cfdi) las versiones contra las que se hacen pruebas de compatibilidad.
+ - Ruby 2.3 en adelante. Se han hecho las modificaciones necesarias para también ofrecer soporte para jRuby (en promedio 30% más rápido). Puede consultar en [Travis CI](https://travis-ci.org/havilchis/easy_cfdi) las versiones contra las que se hacen pruebas de compatibilidad.
  - OpenSSL instalado en su server. Puede verificar ejecutando el comando `$ openssl -v` directamente en la terminal.
  - Un juego de Certificado de sello Digital (CSD) vigente emitido por el SAT.
 	 - Archivo .cer
