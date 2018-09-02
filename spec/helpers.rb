@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Helpers
   def genera_encabezado_helper
     EasyCfdi::Encabezado.new do |encabezado|

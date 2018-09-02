@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 RSpec.describe EasyCfdi::Comprobante do
   before(:all) do
     cert = EasyCfdi::ObtenerCertificado.new(File.read('spec/certificados/lan7008173r5.cer'))

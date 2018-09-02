@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ###############################################################################
 # Esta rutina sólo tiene utilidad en Desarrollo, nunca es invocada en Producción
 # se puede ejecutar manualmente cuando se considere necesario actualizar las --
